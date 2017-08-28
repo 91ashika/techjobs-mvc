@@ -42,7 +42,11 @@
             <table  class="job-listing">
                 <tr th:each = "map : ${job}">
                     <td th:text = "${#strings.capitalizeWords(map.key)}"></td>
-                    <td th:text = "${map.value}"></td>
+                    <td th:if = "${map.key} != 'name'">
+                        <a th:href="@{/list/jobs(column=${map.key},value=${map.value})}" th:text = "${map.value}"></a>
+                    </td>
+                    <td th:unless = "${map.key} != 'name'" th:text = "${map.value}">
+                    </td>
                 </tr>
             </table>
         </div>
